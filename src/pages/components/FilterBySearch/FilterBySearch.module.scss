@@ -1,0 +1,38 @@
+@import '../../../scss/base';
+
+.wrapper {
+    .title {
+        color: $text-color-bold;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 3px;
+        margin-top: 10px;
+    }
+    .search-group {
+        display: flex;
+        align-items: center;
+        padding-left: 11px;
+        .input {
+            flex: 1;
+            border: 1px solid $color-gray-500;
+            border-right: 0;
+            padding: 4px 11px 4px 4px;
+        }
+        .btn-search {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 31px;
+            border: 1px solid $color-gray-500;
+            background-color: transparent;
+            color: $color-gray-700;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $color-cyan;
+                color: $color-gray-700;
+            }
+        }
+    }
+}

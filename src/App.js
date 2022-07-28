@@ -1,13 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainLayout from '~/layouts/MainLayout';
+import Todo from '~/pages/Todo';
+
 function App() {
     return (
         <div>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<MainLayout />} />
-                </Routes>
-            </Router>
+            <Todo />
         </div>
     );
 }
