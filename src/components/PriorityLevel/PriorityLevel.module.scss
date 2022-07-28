@@ -1,0 +1,27 @@
+@import 'src/scss/base';
+
+.level {
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 2px;
+    padding: 4px 8px;
+    text-transform: capitalize;
+    padding: 0 7px;
+    border: 1px solid transparent;
+    font-weight: 500;
+
+    &.high {
+        color: $color-danger;
+        border-color: currentColor;
+    }
+
+    &.medium {
+        color: $color-blue;
+        border-color: currentColor;
+    }
+
+    &.low {
+        color: $color-gray;
+        border-color: currentColor;
+    }
+}

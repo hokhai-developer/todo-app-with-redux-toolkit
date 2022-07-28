@@ -1,16 +1,17 @@
-@import '../../scss/base';
+@import 'src/scss/base';
 
 .wrapper {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: $color-gray-200;
     .container {
         width: 500px;
         height: 90vh;
         display: flex;
         flex-direction: column;
-        background-color: $color-gray-100;
+        background-color: $white-color;
         padding: 20px;
         box-shadow: 0 0 10px 4px #bfbfbf;
         border-radius: 5px;

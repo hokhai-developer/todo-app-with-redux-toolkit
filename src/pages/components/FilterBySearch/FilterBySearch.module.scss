@@ -1,4 +1,4 @@
-@import '../../../scss/base';
+@import 'src/scss/base';
 
 .wrapper {
     .title {
@@ -11,12 +11,11 @@
     .search-group {
         display: flex;
         align-items: center;
-        padding-left: 11px;
         .input {
             flex: 1;
             border: 1px solid $color-gray-500;
             border-right: 0;
-            padding: 4px 11px 4px 4px;
+            padding: 4px 10px;
         }
         .btn-search {
             display: flex;

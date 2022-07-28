@@ -1,0 +1,29 @@
+@import 'src/scss/base';
+
+.wrapper {
+    margin-top: 24px;
+    .container {
+        display: flex;
+        align-items: center;
+        .todo-input {
+            flex: 1;
+            border: 1px solid $color-gray-500;
+            border-radius: 2px;
+            .input {
+                width: 100%;
+                height: 100%;
+                padding: 4px 10px;
+            }
+        }
+
+        .btn-addTodo {
+            border: 1px solid $color-blue;
+            background-color: $color-blue;
+            color: $white-color;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            padding: 4px 16px;
+            cursor: pointer;
+        }
+    }
+}

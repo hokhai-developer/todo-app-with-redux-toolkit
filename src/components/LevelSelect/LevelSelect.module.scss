@@ -1,0 +1,25 @@
+@import 'src/scss/base';
+
+.wrapper {
+    position: relative;
+    height: 32px;
+    border: 1px solid $color-gray-500;
+    border-left: none;
+    border-right: none;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .labelShow {
+        display: flex;
+        align-items: center;
+        gap: 0 8px;
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-gray-500;
+        }
+    }
+}

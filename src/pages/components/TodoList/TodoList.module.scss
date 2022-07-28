@@ -1,0 +1,52 @@
+@import 'src/scss/base';
+
+.wrapper {
+    height: 144px;
+    padding-right: 14px;
+    overflow: overlay;
+
+    &::-webkit-scrollbar-track {
+        border-radius: 8px;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 18px;
+        background-color: $color-gray-600;
+    }
+
+    .todo-item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        .input-checkbox {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .center {
+            flex: 1;
+            .title {
+                padding: 0 8px;
+                font-size: 16px;
+                font-weight: 400;
+                color: $text-color-bold;
+                width: max-content;
+                cursor: pointer;
+            }
+        }
+        &.completed {
+            opacity: 0.5;
+        }
+        &.completed .center .title {
+            text-decoration: line-through;
+        }
+    }
+}

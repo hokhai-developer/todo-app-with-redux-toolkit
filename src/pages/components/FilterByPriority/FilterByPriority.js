@@ -1,41 +1,69 @@
-import React from 'react';
+import React, { useEffect, useRef, useState, useId } from 'react';
 import classNames from 'classnames/bind';
 import styles from './FilterByPriority.module.scss';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+import DropDownPriority from '~/components/DropDownPriority';
+import PrioritySelected from '~/components/PrioritySelected';
 import PropTypes from 'prop-types';
 
 const cx = classNames.bind(styles);
 const FilterByPriority = (props) => {
+    const [prioritySelected, setPrioritySelected] = useState([{ title: 'high', id: useId() }]);
+    const [showDropdown, setShowDropDown] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+
+    const inSideRef = useRef();
+    const inputRef = useRef();
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutSide);
+        return () => {
+            document.removeEventListener('click', handleClickOutSide);
+        };
+    }, []);
+
+    const handleClickOutSide = (e) => {
+        const { target } = e;
+        if (!inSideRef.current.contains(target)) {
+            setInputValue('');
+            setShowDropDown(false);
+        }
+    };
+
+    const handleClearInputValue = (e) => {
+        e.stopPropagation();
+        setInputValue('');
+        inputRef.current.focus();
+    };
+
     return (
         <div className={cx('wrapper')}>
             <h6 className={cx('title')}>Filter By Priority</h6>
-            <div className={cx('top')}>
-                <div className={cx('selected')}>
-                    <div className={cx('selected-item')}>
-                        <p className={cx('level', 'high')}>high</p>
-                        <button className={cx('btn-clear')}>
-                            <ClearOutlinedIcon />
-                        </button>
-                    </div>
-                    {/* <div className={cx('selected-item')}>
-                        <p className={cx('level', 'medium')}>medium</p>
-                        <button className={cx('btn-clear')}>
-                            <ClearOutlinedIcon />
-                        </button>
-                    </div> */}
-                    <div className={cx('selected-item')}>
-                        <p className={cx('level', 'low')}>low</p>
-                        <button className={cx('btn-clear')}>
-                            <ClearOutlinedIcon />
-                        </button>
-                    </div>
-                </div>
+            <div className={cx('top')} ref={inSideRef}>
+                {prioritySelected && prioritySelected.length > 0 && (
+                    <PrioritySelected prioritySelected={prioritySelected} />
+                )}
                 <div className={cx('input')}>
-                    <input type="text" placeholder="Please select Priority" />
+                    <input
+                        type="text"
+                        ref={inputRef}
+                        placeholder="Please select Priority"
+                        onFocus={() => setShowDropDown(true)}
+                        value={inputValue}
+                        onChange={(e) => {
+                            if (e.target.value.startsWith(' ')) {
+                                return;
+                            }
+                            setInputValue(e.target.value);
+                        }}
+                    />
                 </div>
-                <button className={cx('btn-clear-selected')}>
-                    <ClearOutlinedIcon />
-                </button>
+                {inputValue.length > 0 && (
+                    <button className={cx('btn-clear-input')} onClick={handleClearInputValue}>
+                        <ClearOutlinedIcon />
+                    </button>
+                )}
+                {showDropdown && <DropDownPriority />}
             </div>
         </div>
     );

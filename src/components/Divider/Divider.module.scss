@@ -1,0 +1,9 @@
+@import 'src/scss/base';
+
+.wrapper {
+    margin: 24px 0;
+    .divider {
+        height: 1px;
+        background-color: $color-gray-500;
+    }
+}

@@ -1,6 +1,7 @@
-@import '../../../scss/base';
+@import 'src/scss/base';
 
 .wrapper {
+    position: relative;
     .title {
         color: $text-color-bold;
         font-size: 18px;
@@ -9,72 +10,19 @@
         margin-top: 10px;
     }
     .top {
+        position: relative;
         display: flex;
         align-items: center;
         border: 1px solid $color-gray-500;
         padding: 2px;
         background-color: $white-color;
 
-        .selected {
-            display: flex;
-            align-items: center;
-            gap: 0 4px;
-
-            .selected-item {
-                display: flex;
-                align-items: center;
-                gap: 0 8px;
-                border: 1px solid $white-color;
-                border-radius: 2px;
-                background-color: #f5f5f5;
-                padding: 4px 8px;
-
-                .level {
-                    font-size: 12px;
-                    line-height: 20px;
-                    border-radius: 2px;
-                    padding: 4px 8px;
-                    text-transform: capitalize;
-                    padding: 0 7px;
-                    border: 1px solid transparent;
-
-                    &.high {
-                        color: $color-danger;
-                        border-color: currentColor;
-                    }
-
-                    &.medium {
-                        color: $color-blue;
-                        border-color: currentColor;
-                    }
-
-                    &.low {
-                        color: $color-gray;
-                        border-color: currentColor;
-                    }
-                }
-
-                .btn-clear {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 12px;
-                    height: 12px;
-                    color: $color-gray-500;
-                    background-color: transparent;
-                    cursor: pointer;
-                    &:hover {
-                        color: $black-color;
-                    }
-                }
-            }
-        }
-
         .input {
             flex: 1;
             height: 100%;
             display: flex;
             align-items: center;
+            padding: 4px;
 
             input {
                 padding: 0 8px;
@@ -85,7 +33,7 @@
             }
         }
 
-        .btn-clear-selected {
+        .btn-clear-input {
             display: flex;
             align-items: center;
             justify-content: center;
