@@ -4,32 +4,32 @@ import styles from './DropDownLevel.module.scss';
 import PropTypes from 'prop-types';
 import PriorityLevel from '../PriorityLevel';
 
-const level = [
+const levelArray = [
     { title: 'high', value: 'high' },
     { title: 'medium', value: 'medium' },
     { title: 'low', value: 'low' },
 ];
 const cx = classNames.bind(styles);
-const DropDownLevel = ({ className, setShowDropDownLevel, setPriorityLevel, priorityLevel }) => {
-    const [leverList, settLeverList] = useState(level);
+const DropDownLevel = ({ className, setShowDropDownLevel, level, setLevel }) => {
+    const [leverList, settLeverList] = useState(levelArray);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('level-list', className)}>
                 {leverList &&
                     leverList.length > 0 &&
-                    leverList.map((level, index) => {
+                    leverList.map((levelItem, index) => {
                         return (
                             <div
                                 key={index}
                                 className={cx('level-item', {
-                                    active: priorityLevel === level.value,
+                                    active: level === levelItem.value,
                                 })}
                                 onClick={() => {
                                     setShowDropDownLevel(false);
-                                    setPriorityLevel(level.value);
+                                    setLevel(levelItem.value);
                                 }}
                             >
-                                <PriorityLevel title={level.title} className={cx('content')} />
+                                <PriorityLevel title={levelItem.title} className={cx('content')} />
                             </div>
                         );
                     })}

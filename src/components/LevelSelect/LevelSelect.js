@@ -8,9 +8,8 @@ import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutl
 import DropDownLevel from '../DropDownLevel';
 
 const cx = classNames.bind(styles);
-const LevelSelect = (props) => {
+const LevelSelect = ({ level, setLevel }) => {
     const [showDropDownLevel, setShowDropDownLevel] = useState(false);
-    const [priorityLevel, setPriorityLevel] = useState('medium');
 
     const inSideRef = useRef();
     useEffect(() => {
@@ -36,7 +35,7 @@ const LevelSelect = (props) => {
             }}
         >
             <div className={cx('labelShow')}>
-                <PriorityLevel title={priorityLevel} />
+                <PriorityLevel title={level} />
                 <div
                     className={cx('icon')}
                     onClick={(e) => {
@@ -49,11 +48,7 @@ const LevelSelect = (props) => {
                 </div>
             </div>
             {showDropDownLevel && (
-                <DropDownLevel
-                    setShowDropDownLevel={setShowDropDownLevel}
-                    setPriorityLevel={setPriorityLevel}
-                    priorityLevel={priorityLevel}
-                />
+                <DropDownLevel setShowDropDownLevel={setShowDropDownLevel} setLevel={setLevel} level={level} />
             )}
         </div>
     );

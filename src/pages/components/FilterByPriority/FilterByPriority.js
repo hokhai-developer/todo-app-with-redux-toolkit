@@ -4,11 +4,33 @@ import styles from './FilterByPriority.module.scss';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import DropDownPriority from '~/components/DropDownPriority';
 import PrioritySelected from '~/components/PrioritySelected';
+import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
+
+const prioritiesList = [
+    {
+        id: 1,
+        value: 'high',
+        title: 'high',
+        search: 'high',
+    },
+    {
+        id: 2,
+        value: 'medium',
+        title: 'medium',
+        search: 'medium',
+    },
+    {
+        id: 3,
+        value: 'low',
+        title: 'low',
+        search: 'low',
+    },
+];
 
 const cx = classNames.bind(styles);
 const FilterByPriority = (props) => {
-    const [prioritySelected, setPrioritySelected] = useState([{ title: 'high', id: useId() }]);
+    const [prioritiesDropdown, setPrioritiesDropdown] = useState(prioritiesList);
     const [showDropdown, setShowDropDown] = useState(false);
     const [inputValue, setInputValue] = useState('');
 
@@ -25,7 +47,6 @@ const FilterByPriority = (props) => {
     const handleClickOutSide = (e) => {
         const { target } = e;
         if (!inSideRef.current.contains(target)) {
-            setInputValue('');
             setShowDropDown(false);
         }
     };
@@ -33,16 +54,31 @@ const FilterByPriority = (props) => {
     const handleClearInputValue = (e) => {
         e.stopPropagation();
         setInputValue('');
+        setPrioritiesDropdown(prioritiesList);
         inputRef.current.focus();
+    };
+
+    const handleInputChange = (e) => {
+        const { value } = e.target;
+        if (value.startsWith(' ')) {
+            setPrioritiesDropdown(prioritiesList);
+            return;
+        }
+        setInputValue(value);
+        const newValue = value.replaceAll(' ', '').toLowerCase();
+        const newPrioritiesDropdown = prioritiesList.filter((priority) => priority.search.includes(newValue));
+        if (newPrioritiesDropdown.length > 0) {
+            setPrioritiesDropdown(newPrioritiesDropdown);
+        } else {
+            setPrioritiesDropdown([]);
+        }
     };
 
     return (
         <div className={cx('wrapper')}>
             <h6 className={cx('title')}>Filter By Priority</h6>
             <div className={cx('top')} ref={inSideRef}>
-                {prioritySelected && prioritySelected.length > 0 && (
-                    <PrioritySelected prioritySelected={prioritySelected} />
-                )}
+                {<PrioritySelected />}
                 <div className={cx('input')}>
                     <input
                         type="text"
@@ -50,12 +86,7 @@ const FilterByPriority = (props) => {
                         placeholder="Please select Priority"
                         onFocus={() => setShowDropDown(true)}
                         value={inputValue}
-                        onChange={(e) => {
-                            if (e.target.value.startsWith(' ')) {
-                                return;
-                            }
-                            setInputValue(e.target.value);
-                        }}
+                        onChange={(e) => handleInputChange(e)}
                     />
                 </div>
                 {inputValue.length > 0 && (
@@ -63,7 +94,7 @@ const FilterByPriority = (props) => {
                         <ClearOutlinedIcon />
                     </button>
                 )}
-                {showDropdown && <DropDownPriority />}
+                {showDropdown && <DropDownPriority prioritiesList={prioritiesDropdown} />}
             </div>
         </div>
     );

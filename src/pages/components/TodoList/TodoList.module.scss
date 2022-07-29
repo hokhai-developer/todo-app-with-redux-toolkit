@@ -3,7 +3,8 @@
 .wrapper {
     height: 144px;
     padding-right: 14px;
-    overflow: overlay;
+    overflow-y: overlay;
+    overflow-x: hidden;
 
     &::-webkit-scrollbar-track {
         border-radius: 8px;
@@ -22,31 +23,67 @@
 
     .todo-item {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        margin-bottom: 4px;
         width: 100%;
 
+        &.completed {
+            opacity: 0.5;
+        }
+        &.completed .center .title {
+            text-decoration: line-through;
+        }
+
         .input-checkbox {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
+            transform: translateY(3px);
             cursor: pointer;
         }
 
         .center {
             flex: 1;
+            max-width: 338px;
             .title {
                 padding: 0 8px;
                 font-size: 16px;
                 font-weight: 400;
                 color: $text-color-bold;
                 width: max-content;
+                max-width: 100%;
                 cursor: pointer;
             }
         }
-        &.completed {
-            opacity: 0.5;
-        }
-        &.completed .center .title {
-            text-decoration: line-through;
+
+        .right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 90px;
+
+            .translateY {
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .btn-delete {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 24px;
+                height: 24px;
+                margin-left: 6px;
+                background-color: $color-danger;
+                opacity: 0.5;
+                color: $color-gray-400;
+                cursor: pointer;
+                &:hover {
+                    opacity: 1;
+                    color: $white-color;
+                }
+            }
         }
     }
 }

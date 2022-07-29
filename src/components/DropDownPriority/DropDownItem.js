@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './DropDownPriority.module.scss';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import PriorityLevel from '../PriorityLevel';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import filtersSlice from '~/redux/slices/filtersSlice';
 
 const cx = classNames.bind(styles);
-const DropDownItem = ({ className, title }) => {
-    const [active, setActive] = useState(false);
+const DropDownItem = ({ className, priority, active }) => {
+    const dispatch = useDispatch();
 
-    const handleActive = () => {
-        setActive(!active);
+    const handleActive = (priority) => {
+        dispatch(filtersSlice.actions.prioritiesChange(priority));
     };
 
     return (
@@ -22,9 +24,9 @@ const DropDownItem = ({ className, title }) => {
                 },
                 className,
             )}
-            onClick={handleActive}
+            onClick={() => handleActive(priority)}
         >
-            <PriorityLevel title={title} />
+            <PriorityLevel title={priority.title} />
             {active && <CheckOutlinedIcon style={{ color: '#50f8ef' }} />}
         </div>
     );
