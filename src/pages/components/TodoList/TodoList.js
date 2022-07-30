@@ -1,8 +1,10 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import Divider from '~/components/Divider';
 import ErrorData from '~/components/ErrorData';
 import { todosRemainingSelector } from '~/redux/selectors';
+
 import TodoEdit from '../TodoEdit';
 import TodoItem from './TodoItem';
 import styles from './TodoList.module.scss';
@@ -27,14 +29,17 @@ const TodoList = (props) => {
                     {todoList && todoList.length > 0 ? (
                         todoList.map((todo) => {
                             return (
-                                <TodoItem
-                                    key={todo.id}
-                                    title={todo.name}
-                                    level={todo.priority}
-                                    completed={todo.completed}
-                                    id={todo.id}
-                                    handleShowEdit={handleShowEdit}
-                                />
+                                <>
+                                    <TodoItem
+                                        key={todo.id}
+                                        title={todo.name}
+                                        level={todo.priority}
+                                        completed={todo.completed}
+                                        id={todo.id}
+                                        handleShowEdit={handleShowEdit}
+                                    />
+                                    <Divider className={cx('divider')} />
+                                </>
                             );
                         })
                     ) : (
