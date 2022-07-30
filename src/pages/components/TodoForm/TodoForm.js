@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './TodoForm.module.scss';
 import PropTypes from 'prop-types';
-import LevelSelect from '~/components/LevelSelect';
-import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import LevelSelect from '~/components/LevelSelect';
 import todoListSlice from '~/redux/slices/todosSlice';
+import styles from './TodoForm.module.scss';
 
 const cx = classNames.bind(styles);
-const TodoForm = (props) => {
+const TodoForm = ({ className }) => {
     const [level, setLevel] = useState('medium');
     const [inputValue, setInputValue] = useState('');
     const dispatch = useDispatch();
@@ -36,28 +36,30 @@ const TodoForm = (props) => {
     };
 
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper', className)}>
             <div className={cx('container')}>
-                <div className={cx('todo-input')}>
-                    <input
-                        type="text"
-                        placeholder="Create a new todo"
-                        className={cx('input')}
+                <div className={cx('form-left')}>
+                    <textarea
+                        className={cx('text')}
                         value={inputValue}
                         onChange={(e) => handleChangeInputValue(e)}
-                    />
+                        placeholder="Create a new todo"
+                    ></textarea>
                 </div>
-                <div className={cx('selectLevel')}>
-                    <LevelSelect level={level} setLevel={setLevel} />
+
+                <div className={cx('form-right')}>
+                    <LevelSelect level={level} setLevel={setLevel} className={cx('selectLevel')} />
+                    <button className={cx('btn-addTodo')} onClick={handleAddNewTodo}>
+                        Add
+                    </button>
                 </div>
-                <button className={cx('btn-addTodo')} onClick={handleAddNewTodo}>
-                    Add
-                </button>
             </div>
         </div>
     );
 };
 
-TodoForm.propTypes = {};
+TodoForm.propTypes = {
+    className: PropTypes.string,
+};
 
 export default TodoForm;

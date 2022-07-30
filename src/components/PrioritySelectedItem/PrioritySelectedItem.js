@@ -1,11 +1,10 @@
-import React from 'react';
-import classNames from 'classnames/bind';
-import styles from './PrioritySelectedItem.module.scss';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import PriorityLevel from '../PriorityLevel';
+import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import filtersSlice from '~/redux/slices/filtersSlice';
+import PriorityLevel from '../PriorityLevel';
+import styles from './PrioritySelectedItem.module.scss';
 
 const cx = classNames.bind(styles);
 const PrioritySelectedItem = ({ title, className, id }) => {
@@ -29,6 +28,7 @@ const PrioritySelectedItem = ({ title, className, id }) => {
 PrioritySelectedItem.propTypes = {
     className: PropTypes.string,
     title: PropTypes.string,
+    id: PropTypes.string,
 };
 
 export default PrioritySelectedItem;

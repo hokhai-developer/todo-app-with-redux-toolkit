@@ -11,8 +11,6 @@ export const todosRemainingSelector = createSelector(
     searchTextSelector,
     filterPrioritiesSelector,
     (todoList, status, search, priorities) => {
-        // const newPriorities = priorities.map((priority) => priority.search);
-
         return todoList.filter((todo) => {
             if (status === 'all') {
                 return priorities.length === 0

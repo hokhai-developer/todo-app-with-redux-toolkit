@@ -5,7 +5,6 @@
     padding-right: 14px;
     overflow-y: overlay;
     overflow-x: hidden;
-
     &::-webkit-scrollbar-track {
         border-radius: 8px;
         background-color: transparent;
@@ -20,10 +19,11 @@
         border-radius: 18px;
         background-color: $color-gray-600;
     }
+    //Item
 
     .todo-item {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         margin-bottom: 4px;
         width: 100%;
 
@@ -37,20 +37,20 @@
         .input-checkbox {
             width: 18px;
             height: 18px;
-            transform: translateY(3px);
             cursor: pointer;
         }
 
         .center {
             flex: 1;
-            max-width: 338px;
             .title {
                 padding: 0 8px;
                 font-size: 16px;
                 font-weight: 400;
                 color: $text-color-bold;
-                width: max-content;
-                max-width: 100%;
+                width: 100%;
+                max-width: 308px;
+                max-height: 96px;
+                overflow-y: overlay;
                 cursor: pointer;
             }
         }
@@ -66,6 +66,21 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+
+            .btn-edit {
+                text-align: center;
+                font-size: 14px;
+                text-transform: capitalize;
+                color: $white-color;
+                background-color: $color-cyan;
+                padding: 4px 6px;
+                margin-left: 6px;
+                opacity: 0.5;
+                cursor: pointer;
+                &:hover {
+                    opacity: 1;
+                }
             }
 
             .btn-delete {
@@ -87,3 +102,5 @@
         }
     }
 }
+
+//Edit form Todo

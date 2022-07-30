@@ -1,11 +1,10 @@
-import React from 'react';
 import classNames from 'classnames/bind';
-import styles from './DropDownPriority.module.scss';
-import DropDownItem from './DropDownItem';
 import PropTypes from 'prop-types';
-import { filterPrioritiesSelector } from '~/redux/selectors';
 import { useSelector } from 'react-redux';
+import { filterPrioritiesSelector } from '~/redux/selectors';
 import ErrorData from '../ErrorData';
+import DropDownItem from './DropDownItem';
+import styles from './DropDownPriority.module.scss';
 
 const cx = classNames.bind(styles);
 const DropDownPriority = ({ className, prioritiesList }) => {
@@ -38,6 +37,7 @@ const DropDownPriority = ({ className, prioritiesList }) => {
 
 DropDownPriority.propTypes = {
     className: PropTypes.string,
+    prioritiesList: PropTypes.array,
 };
 
 export default DropDownPriority;

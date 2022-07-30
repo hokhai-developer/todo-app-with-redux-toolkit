@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 
 const dataTodo = localStorage.getItem('todoAppWithReduxToolKit')
     ? JSON.parse(localStorage.getItem('todoAppWithReduxToolKit'))
@@ -13,6 +12,7 @@ const todoListSlice = createSlice({
             state.unshift(actions.payload);
             localStorage.setItem('todoAppWithReduxToolKit', JSON.stringify(state));
         },
+
         toggleTodoStatus: (state, actions) => {
             const id = actions.payload;
             const currentTodo = state.find((todo) => todo.id === id);
@@ -28,6 +28,16 @@ const todoListSlice = createSlice({
             if (currentIndex !== -1) {
                 state.splice(currentIndex, 1);
                 localStorage.setItem('todoAppWithReduxToolKit', JSON.stringify(state));
+            }
+        },
+
+        updateTodo: (state, actions) => {
+            const { id } = actions.payload;
+            const currentIndex = state.findIndex((todo) => todo.id === id);
+            console.log(currentIndex);
+            if (currentIndex !== -1) {
+                state[currentIndex].name = actions.payload.name;
+                state[currentIndex].priority = actions.payload.priority;
             }
         },
     },

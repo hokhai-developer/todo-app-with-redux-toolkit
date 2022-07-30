@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
-import styles from './Todo.module.scss';
-import PropTypes from 'prop-types';
-import Filters from '~/pages/components/Filters';
 import Divider from '~/components/Divider';
-import TodoList from '../components/TodoList';
+import Filters from '~/pages/components/Filters';
 import TodoForm from '../components/TodoForm';
+import TodoList from '../components/TodoList';
+import styles from './Todo.module.scss';
 
 const cx = classNames.bind(styles);
 const Todo = (props) => {
@@ -16,6 +14,7 @@ const Todo = (props) => {
                 <Filters />
                 <Divider />
                 <TodoList />
+                <Divider />
                 <TodoForm />
             </div>
         </div>

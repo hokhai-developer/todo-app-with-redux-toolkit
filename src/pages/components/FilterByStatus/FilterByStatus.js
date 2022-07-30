@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './FilterByStatus.module.scss';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import filtersSlice from '~/redux/slices/filtersSlice';
-import PropTypes from 'prop-types';
+import styles from './FilterByStatus.module.scss';
 
 const cx = classNames.bind(styles);
 const FilterByStatus = (props) => {
@@ -65,7 +64,5 @@ const FilterByStatus = (props) => {
         </div>
     );
 };
-
-FilterByStatus.propTypes = {};
 
 export default FilterByStatus;

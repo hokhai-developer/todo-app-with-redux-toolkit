@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Images from '~/assets/images';
 import classNames from 'classnames/bind';
-import styles from './Image.module.scss';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import Images from '~/assets/images';
+import styles from './Image.module.scss';
 
 const cx = classNames.bind(styles);
 const Image = ({ src, alt = 'developer', fallBack, className }) => {

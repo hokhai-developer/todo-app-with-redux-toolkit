@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import classNames from 'classnames/bind';
-import styles from './FilterBySearch.module.scss';
-import PropTypes from 'prop-types';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import useDebounce from '~/hooks/useDebounce';
+import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import useDebounce from '~/hooks/useDebounce';
 import filtersSlice from '~/redux/slices/filtersSlice';
+import styles from './FilterBySearch.module.scss';
 
 const cx = classNames.bind(styles);
 const FilterBySearch = (props) => {
@@ -45,7 +44,5 @@ const FilterBySearch = (props) => {
         </div>
     );
 };
-
-FilterBySearch.propTypes = {};
 
 export default FilterBySearch;

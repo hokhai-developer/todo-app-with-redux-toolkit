@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import classNames from 'classnames/bind';
-import styles from './DropDownPriority.module.scss';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
-import PriorityLevel from '../PriorityLevel';
+import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import filtersSlice from '~/redux/slices/filtersSlice';
+import PriorityLevel from '../PriorityLevel';
+import styles from './DropDownPriority.module.scss';
 
 const cx = classNames.bind(styles);
 const DropDownItem = ({ className, priority, active }) => {
@@ -35,6 +34,7 @@ const DropDownItem = ({ className, priority, active }) => {
 DropDownItem.propTypes = {
     classNames: PropTypes.string,
     title: PropTypes.string,
+    active: PropTypes.bool,
 };
 
 export default DropDownItem;

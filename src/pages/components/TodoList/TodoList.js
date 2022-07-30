@@ -1,37 +1,51 @@
-import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './TodoList.module.scss';
-import TodoItem from './TodoItem';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { todoListSelector } from '~/redux/selectors';
 import ErrorData from '~/components/ErrorData';
 import { todosRemainingSelector } from '~/redux/selectors';
+import TodoEdit from '../TodoEdit';
+import TodoItem from './TodoItem';
+import styles from './TodoList.module.scss';
 
 const cx = classNames.bind(styles);
 const TodoList = (props) => {
+    const [showEdit, setShowEdit] = useState(false);
+    const [todoEdit, setTodoEdit] = useState([]);
     const todoList = useSelector(todosRemainingSelector);
+
+    const handleShowEdit = (id) => {
+        if (id) {
+            const newTodoEdit = todoList.find((todo) => todo.id === id);
+            setTodoEdit(newTodoEdit);
+        }
+        setShowEdit(true);
+    };
     return (
         <div className={cx('wrapper')}>
-            {todoList && todoList.length > 0 ? (
-                todoList.map((todo) => {
-                    return (
-                        <TodoItem
-                            key={todo.id}
-                            title={todo.name}
-                            level={todo.priority}
-                            completed={todo.completed}
-                            id={todo.id}
-                        />
-                    );
-                })
+            {!showEdit ? (
+                <div>
+                    {todoList && todoList.length > 0 ? (
+                        todoList.map((todo) => {
+                            return (
+                                <TodoItem
+                                    key={todo.id}
+                                    title={todo.name}
+                                    level={todo.priority}
+                                    completed={todo.completed}
+                                    id={todo.id}
+                                    handleShowEdit={handleShowEdit}
+                                />
+                            );
+                        })
+                    ) : (
+                        <ErrorData />
+                    )}
+                </div>
             ) : (
-                <ErrorData />
+                <TodoEdit todoEdit={todoEdit} setTodoEdit={setTodoEdit} setShowEdit={setShowEdit} />
             )}
         </div>
     );
 };
-
-TodoList.propTypes = {};
 
 export default TodoList;

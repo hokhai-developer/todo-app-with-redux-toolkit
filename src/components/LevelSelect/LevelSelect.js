@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import classNames from 'classnames/bind';
-import styles from './LevelSelect.module.scss';
-import PropTypes from 'prop-types';
-import PriorityLevel from '../PriorityLevel';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
+import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
 import DropDownLevel from '../DropDownLevel';
+import PriorityLevel from '../PriorityLevel';
+import styles from './LevelSelect.module.scss';
 
 const cx = classNames.bind(styles);
-const LevelSelect = ({ level, setLevel }) => {
+const LevelSelect = ({ level, setLevel, className, down = false }) => {
     const [showDropDownLevel, setShowDropDownLevel] = useState(false);
 
     const inSideRef = useRef();
@@ -28,7 +28,7 @@ const LevelSelect = ({ level, setLevel }) => {
 
     return (
         <div
-            className={cx('wrapper')}
+            className={cx('wrapper', className)}
             ref={inSideRef}
             onClick={() => {
                 setShowDropDownLevel(!showDropDownLevel);
@@ -48,12 +48,22 @@ const LevelSelect = ({ level, setLevel }) => {
                 </div>
             </div>
             {showDropDownLevel && (
-                <DropDownLevel setShowDropDownLevel={setShowDropDownLevel} setLevel={setLevel} level={level} />
+                <DropDownLevel
+                    setShowDropDownLevel={setShowDropDownLevel}
+                    setLevel={setLevel}
+                    level={level}
+                    down={down}
+                />
             )}
         </div>
     );
 };
 
-LevelSelect.propTypes = {};
+LevelSelect.propTypes = {
+    level: PropTypes.string,
+    setLevel: PropTypes.func,
+    className: PropTypes.string,
+    down: PropTypes.bool,
+};
 
 export default LevelSelect;

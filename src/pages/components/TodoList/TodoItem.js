@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import classNames from 'classnames/bind';
-import styles from './TodoList.module.scss';
-import PriorityLevel from '~/components/PriorityLevel';
-import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import todoListSlice from '~/redux/slices/todosSlice';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import PriorityLevel from '~/components/PriorityLevel';
+import todoListSlice from '~/redux/slices/todosSlice';
+import styles from './TodoList.module.scss';
 
 const cx = classNames.bind(styles);
-const TodoItem = ({ title, level, className, completed, id }) => {
+const TodoItem = ({ title, level, className, completed, id, handleShowEdit }) => {
     const [complete, setComplete] = useState(false);
     const dispatch = useDispatch();
 
@@ -41,12 +41,13 @@ const TodoItem = ({ title, level, className, completed, id }) => {
             />
 
             <div className={cx('center')}>
-                <p className={cx('title')} onClick={() => handleComplete(id)}>
-                    {title}
-                </p>
+                <p className={cx('title')}>{title}</p>
             </div>
             <div className={cx('right')}>
                 <PriorityLevel title={level} className={cx('translateY')} />
+                <button onClick={() => handleShowEdit(id)} className={cx('btn-edit')}>
+                    Edit
+                </button>
                 <button onClick={() => handleDeleteTodo(id)} className={cx('btn-delete')}>
                     <ClearOutlinedIcon />
                 </button>
@@ -60,6 +61,8 @@ TodoItem.propTypes = {
     title: PropTypes.string,
     className: PropTypes.string,
     complete: PropTypes.bool,
+    id: PropTypes.string,
+    handleShowEdit: PropTypes.func,
 };
 
 export default TodoItem;

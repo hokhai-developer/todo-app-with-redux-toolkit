@@ -1,7 +1,6 @@
-import React from 'react';
 import classNames from 'classnames/bind';
-import styles from './PriorityLevel.module.scss';
 import PropTypes from 'prop-types';
+import styles from './PriorityLevel.module.scss';
 
 const cx = classNames.bind(styles);
 const PriorityLevel = ({ className, title }) => {

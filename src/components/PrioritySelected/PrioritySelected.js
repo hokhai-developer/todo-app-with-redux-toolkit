@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
-import styles from './PrioritySelected.module.scss';
-import PrioritySelectedItem from '~/components/PrioritySelectedItem';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import PrioritySelectedItem from '~/components/PrioritySelectedItem';
 import { filterPrioritiesSelector } from '~/redux/selectors';
+import styles from './PrioritySelected.module.scss';
 
 const cx = classNames.bind(styles);
 const PrioritySelected = ({ className }) => {
@@ -21,7 +20,6 @@ const PrioritySelected = ({ className }) => {
 };
 
 PrioritySelected.propTypes = {
-    prioritySelected: PropTypes.array,
     className: PropTypes.string,
 };
 

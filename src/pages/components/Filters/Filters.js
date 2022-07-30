@@ -1,10 +1,8 @@
-import React from 'react';
 import classNames from 'classnames/bind';
-import styles from './Filters.module.scss';
-import PropTypes from 'prop-types';
 import FilterByPriority from '../FilterByPriority';
 import FilterBySearch from '../FilterBySearch';
 import FilterByStatus from '../FilterByStatus';
+import styles from './Filters.module.scss';
 
 const cx = classNames.bind(styles);
 const Filters = (props) => {
@@ -16,7 +14,5 @@ const Filters = (props) => {
         </div>
     );
 };
-
-Filters.propTypes = {};
 
 export default Filters;

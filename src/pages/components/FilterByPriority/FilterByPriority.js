@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState, useId } from 'react';
-import classNames from 'classnames/bind';
-import styles from './FilterByPriority.module.scss';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+import classNames from 'classnames/bind';
+import { useEffect, useRef, useState } from 'react';
 import DropDownPriority from '~/components/DropDownPriority';
 import PrioritySelected from '~/components/PrioritySelected';
-import { v4 as uuidv4 } from 'uuid';
-import PropTypes from 'prop-types';
+import styles from './FilterByPriority.module.scss';
 
 const prioritiesList = [
     {
@@ -99,7 +97,5 @@ const FilterByPriority = (props) => {
         </div>
     );
 };
-
-FilterByPriority.propTypes = {};
 
 export default FilterByPriority;
