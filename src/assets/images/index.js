@@ -1,5 +1,5 @@
 const Images = {
-    noImage: require('~/assets/Images/Images/no-image.png'),
+    noImage: require('~/assets/Images/Images/noimage.png'),
     noData: require('~/assets/Images/Images/nodata.jpg'),
 };
 
